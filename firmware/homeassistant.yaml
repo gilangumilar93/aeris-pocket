@@ -1,0 +1,41 @@
+# Backup if MQTT discovery is disabled on the broker.
+# Replace AABBCCDDEEFF with the id printed on the OLED system page.
+
+mqtt:
+  sensor:
+    - name: "AERIS VOC index"
+      unique_id: aeris_pocket_aabbccddeeff_voc
+      state_topic: "aeris/pocket/aabbccddeeff/state"
+      unit_of_measurement: "index"
+      icon: "mdi:molecule"
+      availability_topic: "aeris/pocket/aabbccddeeff/availability"
+      value_template: "{{ value_json.voc }}"
+    - name: "AERIS NOx index"
+      unique_id: aeris_pocket_aabbccddeeff_nox
+      state_topic: "aeris/pocket/aabbccddeeff/state"
+      unit_of_measurement: "index"
+      icon: "mdi:molecule"
+      availability_topic: "aeris/pocket/aabbccddeeff/availability"
+      value_template: "{{ value_json.nox }}"
+    - name: "AERIS AQI star"
+      unique_id: aeris_pocket_aabbccddeeff_aqi
+      state_topic: "aeris/pocket/aabbccddeeff/state"
+      icon: "mdi:air-filter"
+      availability_topic: "aeris/pocket/aabbccddeeff/availability"
+      value_template: "{{ value_json.aqi_star }}"
+      json_attributes_topic: "aeris/pocket/aabbccddeeff/state"
+      json_attributes_template: "{{ {'band': value_json.band, 'note': 'VOC-derived, not EPA AQI'} | tojson }}"
+    - name: "AERIS UV index"
+      unique_id: aeris_pocket_aabbccddeeff_uv
+      state_topic: "aeris/pocket/aabbccddeeff/state"
+      unit_of_measurement: "UVI"
+      icon: "mdi:weather-sunny"
+      availability_topic: "aeris/pocket/aabbccddeeff/availability"
+      value_template: "{{ value_json.uv }}"
+    - name: "AERIS battery"
+      unique_id: aeris_pocket_aabbccddeeff_bat
+      state_topic: "aeris/pocket/aabbccddeeff/state"
+      unit_of_measurement: "%"
+      device_class: battery
+      availability_topic: "aeris/pocket/aabbccddeeff/availability"
+      value_template: "{{ value_json.bat_pct }}"
